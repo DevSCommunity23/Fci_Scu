@@ -92,53 +92,51 @@ for (let i = 0; i < All_Links.length; i++) {
     // } else if (i == 2) {
     //   location.href = "specialDEP.html#special-home";
     // }
-    // if (Navbar.classList.contains("show")) {
-    //   Navbar.classList.remove("show");
-    // }
   });
 }
 // end link active------------------------------------------------------##########################################
 
 // start img slider------------------------------------------------------##########################################
+if (window.location.hash == "#Home") {
+  let img_slider = document.querySelector(".home");
+  let left_arr = document.querySelector(".arrow-left");
+  let right_arr = document.querySelector(".arrow-right");
+  console.log(right_arr);
 
-let img_slider = document.querySelector(".home");
-let left_arr = document.querySelector(".arrow-left");
-let right_arr = document.querySelector(".arrow-right");
-let caption_header = document.querySelector(".caption h1");
-let caption_par = document.querySelector(".caption p");
-let img_arr = ["slider11.jpg", "slider22.jpg", "slider44.jpg"];
-//
-let id = 0;
-setInterval(() => {
-  id++;
-  if (id > img_arr.length - 1) {
-    id = 0;
+  let caption_header = document.querySelector(".caption h1");
+  let caption_par = document.querySelector(".caption p");
+  let img_arr = ["slider11.jpg", "slider22.jpg", "slider44.jpg"];
+  //
+  let id = 0;
+  setInterval(() => {
+    id++;
+    if (id > img_arr.length - 1) {
+      id = 0;
+    }
+    slider(id);
+  }, 8000);
+  function slider(id) {
+    img_slider.style.backgroundImage = `url(Img/${img_arr[id]})`;
+    img_slider.classList.add(`img-fade`);
+    setTimeout(() => {
+      img_slider.classList.remove(`img-fade`);
+    }, 0);
   }
-  slider(id);
-}, 8000);
-function slider(id) {
-  img_slider.style.backgroundImage = `url(Img/${img_arr[id]})`;
-  img_slider.classList.add(`img-fade`);
-  setTimeout(() => {
-    img_slider.classList.remove(`img-fade`);
-  }, 0);
+    left_arr.addEventListener("click", () => {
+      id--;
+      if (id < 0) {
+        id = img_arr.length - 1;
+      }
+      slider(id);
+    });
+    right_arr.addEventListener("click", () => {
+      id++;
+      if (id > img_arr.length - 1) {
+        id = 0;
+      }
+      slider(id);
+    });
 }
-
-left_arr.addEventListener("click", () => {
-  id--;
-  if (id < 0) {
-    id = img_arr.length - 1;
-  }
-  slider(id);
-});
-right_arr.addEventListener("click", () => {
-  id++;
-  if (id > img_arr.length - 1) {
-    id = 0;
-  }
-  slider(id);
-});
-
 // end img slider------------------------------------------------------##########################################
 
 // // start link active------------------------------------------------------##########################################
@@ -157,77 +155,7 @@ right_arr.addEventListener("click", () => {
 //     // }
 //   });
 // }
-// window.addEventListener("scroll", PageHeight());
-// const PageHeight = () => {
-//   let Home = All_Links[0];
-//   let General = All_Links[1];
-//   let Special = All_Links[2];
-//   let Years = All_Links[3];
-//   let CreditH = All_Links[4];
-//   let Building = All_Links[5];
-//   let activites = All_Links[6];
-
-//   let pos_menu = window.scrollY + menu.offsetHeight;
-
-//   let pos_A = A.offsetTop + A.offsetHeight;
-//   let pos_B = B.offsetTop + B.offsetHeight;
-//   let pos_C = C.offsetTop + C.offsetHeight;
-
-//   let distance_A = pos_A - pos_menu;
-//   let distance_B = pos_B - pos_menu;
-//   let distance_C = pos_C - pos_menu;
-
-//   let min = Math.min(
-//     ...[distance_A, distance_B, distance_C].filter((num) => num > 0)
-//   );
-
-//   document.querySelectorAll(".Menu .Item")[0].classList.remove("Highlight");
-//   document.querySelectorAll(".Menu .Item")[1].classList.remove("Highlight");
-//   document.querySelectorAll(".Menu .Item")[2].classList.remove("Highlight");
-
-//   if (min === distance_A)
-//     document.querySelectorAll(".Menu .Item")[0].classList.add("Highlight");
-//   if (min === distance_B)
-//     document.querySelectorAll(".Menu .Item")[1].classList.add("Highlight");
-//   if (min === distance_C)
-//     document.querySelectorAll(".Menu .Item")[2].classList.add("Highlight");
-// };
-
 // end link active------------------------------------------------------##########################################
 
-// start theme switcher------------------------------------------------------##########################################
 
-// set local storage value on load
-// document.documentElement.style.setProperty(
-//   "--btn-location",
-//   localStorage.getItem("btn-location")
-// );
-// document.documentElement.style.setProperty(
-//   "--section-primary-color",
-//   localStorage.getItem("Primary-theme-color")
-// );
-// document.documentElement.style.setProperty(
-//   "--section-scondary-color",
-//   localStorage.getItem("scondary-theme-color")
-// );
-// document.documentElement.style.setProperty(
-//   "--section-third-color",
-//   localStorage.getItem("third-theme-color")
-// );
-//
 
-// start typewriter------------------------------------------------------##########################################
-
-let Text_div = document.getElementsByClassName("main-text")[0];
-let Main_Text = Text_div.getAttribute("text-data");
-let counter = 0;
-let typewriter = setInterval(() => {
-  Text_div.innerHTML += Main_Text[counter];
-  counter++;
-  if (counter == Main_Text.length) {
-    clearInterval(typewriter);
-    counter = 0;
-  }
-}, 150);
-
-// end typewriter------------------------------------------------------##########################################
